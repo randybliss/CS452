@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="790a56ea-7709-4598-a057-a785ddda4522" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aws/db/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aws/db/configureAWSCluster.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aws/db/extract/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aws/db/extract/dumpRecord.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aws/db/extract/dumpRecords.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aws/db/extract/importDumpedJournals.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aws/db/extract/importRelations.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aws/db/helpers/regions.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aws/db/helpers/taskTypes.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aws/db/helpers/types.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aws/db/helpers/zones.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aws/db/hosts/TFAPP-beta-tfapp/cassandraClusterIps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aws/db/includes/constants.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aws/db/includes/functions.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aws/db/novpc.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aws/db/scripts/doInstallAppCode.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/aws/db/vpc.sh" />
-    </list>
+    <list default="true" id="790a56ea-7709-4598-a057-a785ddda4522" name="Default" comment="" />
     <ignored path="cs452.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -221,56 +203,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="CS452" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cs452" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CS452" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cs452" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CS452" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cs452" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CS452" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="aws" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="db" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -894,16 +826,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1474951762294</updated>
-      <workItem from="1474951768260" duration="3709000" />
+      <workItem from="1474951768260" duration="3725000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3709000" />
+    <option name="totallyTimeSpent" value="3725000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="824" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -916,7 +848,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24964234" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
