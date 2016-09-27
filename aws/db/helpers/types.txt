@@ -1,0 +1,10 @@
+m1.large
+m1.xlarge
+m3.medium
+m3.large
+m3.xlarge
+m3.2xlarge
+c3.2xlarge
+c1.xlarge
+cc2.8xlarge
+hi1.4xlarge
