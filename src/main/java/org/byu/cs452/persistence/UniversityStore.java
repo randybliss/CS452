@@ -15,7 +15,7 @@ public class UniversityStore {
   private ConnectionFactory connectionFactory;
 
   public UniversityStore() {
-    this.connectionFactory = new PostgreSQLPooledConnectionFactory("localhost", "CS452", "university", 10, "postgres", "postgres");
+    this.connectionFactory = new PostgreSQLSimpleConnectionFactory("localhost", "CS452", "university", "postgres", "postgres");
   }
 
   /**
