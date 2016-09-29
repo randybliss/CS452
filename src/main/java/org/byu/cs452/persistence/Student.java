@@ -6,6 +6,7 @@ import java.sql.SQLException;
 /**
  * @author blissrj
  */
+@SuppressWarnings("unused")
 public class Student {
   public static final String ID = "id";
   public static final String NAME = "name";
