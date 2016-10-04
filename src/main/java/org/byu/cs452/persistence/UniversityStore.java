@@ -1,6 +1,8 @@
 package org.byu.cs452.persistence;
 
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,8 +42,7 @@ public class UniversityStore {
     }
     finally {
       if (conn != null) {
-        try {conn.close();} catch (SQLException ignore) {
-        }
+        try {conn.close();} catch (SQLException ignore) {}
       }
     }
   }
@@ -64,6 +65,50 @@ public class UniversityStore {
     }
     catch (SQLException e) {
       throw new RuntimeException("Unexpected database exception attempting to read students", e);
+    }
+    finally {
+      if (conn != null) {
+        try {conn.close();} catch (SQLException ignore) {}
+      }
+    }
+  }
+
+  public int createJsonStudent(String id, String name, String departmentName, int totalCredits) {
+    JsonStudent student = new JsonStudent().setId(id).setName(name).setDepartmentName(departmentName).setTotalCredits(totalCredits);
+    Connection conn = connectionFactory.getConnection();
+    try {
+      PreparedStatement statement = JsonStudent.getInsertStatement(conn, id, student.toNode().asText());
+      return statement.executeUpdate();
+    }
+    catch (SQLException e) {
+      throw new RuntimeException("Unexpected database exception attempting to insert JsonStudent");
+    }
+    finally {
+      if (conn != null) {
+        try {conn.close();} catch (SQLException ignore){};
+      }
+    }
+  }
+
+  public JsonStudent readJsonStudent(String id) {
+    Connection conn = connectionFactory.getConnection();
+    try {
+      String sqlString = String.format("SELECT %1$s FROM %2$s WHERE id=?", JsonStudent.getColumnNames(), JsonStudent.getTableName());
+      PreparedStatement statement = conn.prepareStatement(sqlString);
+      statement.setString(1, id);
+      ResultSet resultSet = statement.executeQuery();
+      if (!resultSet.next()) {
+        throw new NotFoundException("No record found for student: " + id);
+      }
+      return JsonStudent.getInstance(resultSet);
+    }
+    catch (SQLException e) {
+      throw new RuntimeException("Unexpected database exception attempting to read Json Student id: " + id, e);
+    }
+    finally {
+      if (conn != null) {
+        try {conn.close();} catch (SQLException ignore){};
+      }
     }
   }
 }

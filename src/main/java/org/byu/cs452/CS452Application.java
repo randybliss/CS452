@@ -1,5 +1,7 @@
 package org.byu.cs452;
 
+import com.fasterxml.jackson.core.JsonFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -11,6 +13,8 @@ import java.util.Arrays;
  */
 @SpringBootApplication
 public class CS452Application {
+  private static ObjectMapper objectMapper = new ObjectMapper(new JsonFactory());
+
   public static void main(String[] args) {
     ApplicationContext ctx = SpringApplication.run(CS452Application.class, args);
 
@@ -21,5 +25,8 @@ public class CS452Application {
     for (String beanName : beanNames) {
       System.out.println(beanName);
     }
+  }
+  public static ObjectMapper getObjectMapper() {
+    return objectMapper;
   }
 }
