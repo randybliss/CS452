@@ -29,12 +29,12 @@ public class CS452Controller {
     return universityStore.readStudents();
   }
 
-  @RequestMapping(path = "json/student{id}", method = RequestMethod.GET)
+  @RequestMapping(path = "/student/json/{id}", method = RequestMethod.GET)
   public JsonStudent getJsonStudent(@PathVariable String id) {
     return universityStore.readJsonStudent(id);
   }
 
-  @RequestMapping(path = "json/student{id}", method = RequestMethod.POST)
+  @RequestMapping(path = "/student/json/{id}", method = RequestMethod.POST)
   public void createJsonStudent(@PathVariable String id,
                                 @RequestParam("name") String name,
                                 @RequestParam("dept") String departmentName,

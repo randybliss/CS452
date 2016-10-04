@@ -77,11 +77,11 @@ public class UniversityStore {
     JsonStudent student = new JsonStudent().setId(id).setName(name).setDepartmentName(departmentName).setTotalCredits(totalCredits);
     Connection conn = connectionFactory.getConnection();
     try {
-      PreparedStatement statement = JsonStudent.getInsertStatement(conn, id, student.toNode().asText());
+      PreparedStatement statement = JsonStudent.getInsertStatement(conn, id, student.toNode().toString());
       return statement.executeUpdate();
     }
     catch (SQLException e) {
-      throw new RuntimeException("Unexpected database exception attempting to insert JsonStudent");
+      throw new RuntimeException("Unexpected database exception attempting to insert JsonStudent", e);
     }
     finally {
       if (conn != null) {
