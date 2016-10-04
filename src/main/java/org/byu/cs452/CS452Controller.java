@@ -5,6 +5,8 @@ import org.byu.cs452.persistence.Student;
 import org.byu.cs452.persistence.UniversityStore;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.DatabaseMetaData;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -43,6 +45,17 @@ public class CS452Controller {
     int rc = universityStore.createJsonStudent(id, name, departmentName, Integer.parseInt(totalCredits));
     if (rc != 1) {
       throw new RuntimeException("Failed to create Json Student record for id: " + id);
+    }
+  }
+
+  @RequestMapping(path = "/metadata", method = RequestMethod.GET)
+  public String getDatabaseMetaData() {
+    DatabaseMetaData metaData = universityStore.readDatabaseMetaData();
+    try {
+      return metaData.getDatabaseProductName();
+    }
+    catch (SQLException e) {
+      throw new RuntimeException("Unexpected database exception attempting to get metadata field", e);
     }
   }
 }

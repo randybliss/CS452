@@ -1,12 +1,7 @@
 package org.byu.cs452.persistence;
 
 
-import com.fasterxml.jackson.databind.JsonNode;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -104,6 +99,21 @@ public class UniversityStore {
     }
     catch (SQLException e) {
       throw new RuntimeException("Unexpected database exception attempting to read Json Student id: " + id, e);
+    }
+    finally {
+      if (conn != null) {
+        try {conn.close();} catch (SQLException ignore){};
+      }
+    }
+  }
+
+  public DatabaseMetaData readDatabaseMetaData() {
+    Connection conn = connectionFactory.getConnection();
+    try {
+      return conn.getMetaData();
+    }
+    catch (SQLException e) {
+      throw new RuntimeException("Unexpected database exception attempting to get metadata", e);
     }
     finally {
       if (conn != null) {
