@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
  */
 @Test
 public class JDBCSimpleExampleTest {
-  public void testMain() {
-    JDBCSimpleExample.main(null);
+  public void testDemo() {
+    JDBCSimpleExample.demo();
   }
 }

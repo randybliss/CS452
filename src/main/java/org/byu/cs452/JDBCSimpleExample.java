@@ -8,7 +8,7 @@ import java.sql.*;
  * @author blissrj
  */
 public class JDBCSimpleExample {
-  public static void main(String[] args) {
+  public static void demo() {
     Connection connection = null;
     try {
       // Register driver, get connection, set schema (search_path)
