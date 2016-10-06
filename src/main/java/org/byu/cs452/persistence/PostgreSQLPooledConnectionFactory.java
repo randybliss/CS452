@@ -15,7 +15,7 @@ public class PostgreSQLPooledConnectionFactory implements ConnectionFactory{
   private String schema;
 
   public PostgreSQLPooledConnectionFactory(String host, String database, String schema, int maxConnections, String userName, String password) {
-    this.dataSource = initDataSource(host, database, maxConnections, userName, password);
+    this.dataSource = configureDataSource(host, database, maxConnections, userName, password);
     this.schema = schema;
   }
 
@@ -31,7 +31,7 @@ public class PostgreSQLPooledConnectionFactory implements ConnectionFactory{
     }
   }
 
-  private DataSource initDataSource(String host, String database, int maxConnections, String userName, String password) {
+  private DataSource configureDataSource(String host, String database, int maxConnections, String userName, String password) {
     String url = String.format("jdbc:postgresql://%s:5432/%s", host, database);
     BasicDataSource dataSource = new BasicDataSource();
     dataSource.setDriverClassName(POSTGRESQL_DRIVER_NAME);

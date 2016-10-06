@@ -68,6 +68,21 @@ public class UniversityStore {
     }
   }
 
+  public DatabaseMetaData readDatabaseMetaData() {
+    Connection conn = connectionFactory.getConnection();
+    try {
+      return conn.getMetaData();
+    }
+    catch (SQLException e) {
+      throw new RuntimeException("Unexpected database exception attempting to get metadata", e);
+    }
+    finally {
+      if (conn != null) {
+        try {conn.close();} catch (SQLException ignore){};
+      }
+    }
+  }
+
   public int createJsonStudent(String id, String name, String departmentName, int totalCredits) {
     JsonStudent student = new JsonStudent().setId(id).setName(name).setDepartmentName(departmentName).setTotalCredits(totalCredits);
     Connection conn = connectionFactory.getConnection();
@@ -99,21 +114,6 @@ public class UniversityStore {
     }
     catch (SQLException e) {
       throw new RuntimeException("Unexpected database exception attempting to read Json Student id: " + id, e);
-    }
-    finally {
-      if (conn != null) {
-        try {conn.close();} catch (SQLException ignore){};
-      }
-    }
-  }
-
-  public DatabaseMetaData readDatabaseMetaData() {
-    Connection conn = connectionFactory.getConnection();
-    try {
-      return conn.getMetaData();
-    }
-    catch (SQLException e) {
-      throw new RuntimeException("Unexpected database exception attempting to get metadata", e);
     }
     finally {
       if (conn != null) {

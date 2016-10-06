@@ -6,7 +6,6 @@ import org.byu.cs452.persistence.UniversityStore;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.DatabaseMetaData;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -16,7 +15,7 @@ import java.util.List;
 public class CS452Controller {
   private UniversityStore universityStore = new UniversityStore();
 
-  @RequestMapping("/")
+  @RequestMapping(path = "/")
   public String index() {
     return "Greetings from CS452";
   }
@@ -51,11 +50,6 @@ public class CS452Controller {
   @RequestMapping(path = "/metadata", method = RequestMethod.GET)
   public String getDatabaseMetaData() {
     DatabaseMetaData metaData = universityStore.readDatabaseMetaData();
-    try {
-      return metaData.getDatabaseProductName();
-    }
-    catch (SQLException e) {
-      throw new RuntimeException("Unexpected database exception attempting to get metadata field", e);
-    }
+      return metaData.toString();
   }
 }

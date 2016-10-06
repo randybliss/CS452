@@ -16,7 +16,4 @@ public class CS452ControllerTest {
     Student student = cs452Controller.getStudent("12345");
     assertTrue(student.getName().equals("Shankar"));
   }
-
-
-
 }
