@@ -7,12 +7,12 @@ import org.testng.annotations.Test;
  * @author blissrj
  */
 public class FindAllPrereqTest {
-  @Test
+  @Test(enabled = false)
   public void testFindAllPrereqTest() {
     FindAllPrereq.findPrereqs(new String[]{"postgres", "postgres", "CS-611"});
   }
 
-  @Test
+  @Test(enabled = false)
   public void testLoadByuCsPrereqs() {
     FindAllPrereq.loadByuPrereqs(new String[] {"postgres", "postgres", "/Users/blissrj/CS452/byu-cs-courses.csv"});
   }
