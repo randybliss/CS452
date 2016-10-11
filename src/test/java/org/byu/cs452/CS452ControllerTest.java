@@ -16,4 +16,9 @@ public class CS452ControllerTest {
     Student student = cs452Controller.getStudent("12345");
     assertTrue(student.getName().equals("Shankar"));
   }
+
+  @Test(enabled = false)
+  void testRegisterStudent() {
+    cs452Controller.registerStudent("12345", "CS-319", "1", "Spring", "2010");
+  }
 }

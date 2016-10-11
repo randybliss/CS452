@@ -1,5 +1,6 @@
 package org.byu.cs452;
 
+import org.byu.cs452.examples.JDBCSimpleExample;
 import org.testng.annotations.Test;
 
 /**

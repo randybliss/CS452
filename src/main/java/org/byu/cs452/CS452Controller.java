@@ -52,4 +52,14 @@ public class CS452Controller {
     DatabaseMetaData metaData = universityStore.readDatabaseMetaData();
       return metaData.toString();
   }
+
+  @RequestMapping(path = "/student/{id}/register", method = RequestMethod.PUT)
+  public void registerStudent(@PathVariable String id,
+                              @RequestParam String courseId,
+                              @RequestParam String section,
+                              @RequestParam String semester,
+                              @RequestParam String year)
+  {
+    universityStore.registerStudent(id, courseId, section, semester, Integer.parseInt(year));
+  }
 }

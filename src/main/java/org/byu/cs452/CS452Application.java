@@ -26,6 +26,7 @@ public class CS452Application {
       System.out.println(beanName);
     }
   }
+
   public static ObjectMapper getObjectMapper() {
     return objectMapper;
   }

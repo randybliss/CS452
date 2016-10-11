@@ -82,7 +82,6 @@ public class JsonStudent {
     catch (SQLException e) {
       throw new RuntimeException("Failed to prepare SQL insert statement", e);
     }
-
   }
 
   public static String getColumnNames() {

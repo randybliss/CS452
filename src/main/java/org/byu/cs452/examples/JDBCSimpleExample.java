@@ -1,4 +1,4 @@
-package org.byu.cs452;
+package org.byu.cs452.examples;
 
 import org.byu.cs452.persistence.NotFoundException;
 
