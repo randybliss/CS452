@@ -1,3 +1,4 @@
+t2.micro
 m1.large
 m1.xlarge
 m3.medium

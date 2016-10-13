@@ -48,7 +48,9 @@ sudo -u postgres psql --command "CREATE USER cs452 WITH superuser createdb passw
 #chown -R cassandra:cassandra /home/cassandra/.ssh
 
 echo "setting up cs452 user" > /home/ubuntu/instanceStatus
-MUSER='cs452'
+if [ -z $MUSER ]; then
+  MUSER='cs452'
+fi
 sudo groupadd $MUSER
 sudo useradd -s /bin/bash -m -d /home/$MUSER -g $MUSER $MUSER
 who=`whoami`

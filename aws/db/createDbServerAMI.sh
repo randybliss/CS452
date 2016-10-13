@@ -74,26 +74,27 @@ if [[ $ami ]]; then
 fi
 echo "Creating PostgreSQL AMI server instance from master image ${BASE_AMI}"
 
-  unset vpc
-  echo ".Vpcs[] | if contains({IsDefault: true}) then .VpcId else empty end" > vpc-filter
-  vpc=`aws ec2 describe-vpcs --region ${REGION} | jq -f vpc-filter | tr -d '"'`
-  rm vpc-filter
+unset vpc
+echo ".Vpcs[] | if contains({IsDefault: true}) then .VpcId else empty end" > vpc-filter
+vpc=`aws ec2 describe-vpcs --region ${REGION} | jq -f vpc-filter | tr -d '"'`
+rm vpc-filter
 
-  unset amiGroup
-  aws ec2 describe-security-groups --region ${REGION} >temp-sec-groups
-  echo ".SecurityGroups[] | if .GroupName == \"$SEC_GROUP_NAME\" and .VpcId == \"$vpc\" then .GroupId else empty end" > group-filter
-  amiGroup=`cat temp-sec-groups | jq -f group-filter | tr -d '"'`
-  rm group-filter
-  rm temp-sec-groups
+unset secGroup
+aws ec2 describe-security-groups --region ${REGION} >temp-sec-groups
+echo ".SecurityGroups[] | if .GroupName == \"$SEC_GROUP_NAME\" and .VpcId == \"$vpc\" then .GroupId else empty end" > group-filter
+secGroup=`cat temp-sec-groups | jq -f group-filter | tr -d '"'`
+rm group-filter
+rm temp-sec-groups
+SECURITY_GROUP=${secGroup}
 
-  unset availzones
-  echo ".Subnets[] | if .VpcId == \"$vpc\" then .AvailabilityZone + \":\" + .SubnetId else empty end" > subnet-filter
-  availzones=`aws ec2 describe-subnets --region ${REGION} | jq -f subnet-filter | tr -d '"'`
-  rm subnet-filter
+unset availzones
+echo ".Subnets[] | if .VpcId == \"$vpc\" then .AvailabilityZone + \":\" + .SubnetId else empty end" > subnet-filter
+availzones=`aws ec2 describe-subnets --region ${REGION} | jq -f subnet-filter | tr -d '"'`
+rm subnet-filter
 
-  count=`echo "$availzones" | wc -l | awk '{print $1}'`
-  echo "Select availability zone / subnet from the following:"
-  PS3="(enter selection 1-${count})? "; select answer in ${availzones}; do
+count=`echo "$availzones" | wc -l | awk '{print $1}'`
+echo "Select availability zone / subnet from the following:"
+PS3="(enter selection 1-${count})? "; select answer in ${availzones}; do
     zonesubnet=(`echo $answer | tr ':' ' '`)
     zone=${zonesubnet[0]}
     subnetId=${zonesubnet[1]}
@@ -101,12 +102,11 @@ echo "Creating PostgreSQL AMI server instance from master image ${BASE_AMI}"
     echo "Zone: $zone"
     echo "id: $subnetId"
     break
-  done
-  SECURITY_GROUP=${amiGroup}
+done
 
-  echo "Security Group: $SECURITY_GROUP"
-  echo "Zone: $zone"
-  echo "vpc: $vpc"
+echo "Security Group: $SECURITY_GROUP"
+echo "Zone: $zone"
+echo "vpc: $vpc"
 
 #  SECURITY_GROUP=tf-etl-ami-build
 #  zone='${REGION}d'
@@ -142,7 +142,7 @@ PARAMS="${PARAMS} --instance-type ${INSTANCE_TYPE}"
 #if [[ $IN_VPC ]]; then
   PARAMS="${PARAMS} --network-interfaces [{"
   PARAMS="$PARAMS\"DeviceIndex\":0,"
-  PARAMS="$PARAMS\"Groups\":[\"$amiGroup\"],"
+  PARAMS="$PARAMS\"Groups\":[\"$secGroup\"],"
   PARAMS="$PARAMS\"SubnetId\":\"$subnetId\","
   PARAMS="$PARAMS\"AssociatePublicIpAddress\":true"
   PARAMS="$PARAMS}]"

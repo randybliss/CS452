@@ -180,33 +180,11 @@ if [ -z "$AVAILABILITY_ZONE" ]; then
     fi
   fi
   if [ -z "$AVAILABILITY_ZONE" ]; then
-    count=`wc -l $SCRIPT_DIR/helpers/zones.txt | awk '/zones.txt/ {print $1}'`
-    echo "Select availability zone from the following:"
-    PS3="(enter selection 1-$count)? "; select answer in `cat $SCRIPT_DIR/helpers/zones.txt`; do
-      AVAILABILITY_ZONE=$answer
-      break
-    done
+    get_avail_zone
+    AVAILABILITY_ZONE=$zone
   fi
 fi
 echo $AVAILABILITY_ZONE > $CONFIG_DIR/AvailabilityZone
-echo
-if [ -z "$TF_CONFIG_YML" ]; then
-  if [ "$CONF_TF_CONFIG_YML" ]; then
-    read -p "Configuration .yml file is: $CONF_TF_CONFIG_YML - do you want to keep it (Y/n)? " answer
-    if [ -z "$answer" ] || [[$answer =[Yy]]; then
-      TF_CONFIG_YML=$CONF_TF_CONFIG_YML
-    fi
-  fi
-  if [ -z "$TF_CONFIG_YML" ]; then
-    count=`ls $PROJECT_DIR/webapp/config | wc -l | awk '{print $1}'`
-    echo "Select .yml configuration file from the following:"
-    PS3="(enter selection 1-$count)? "; select answer in `ls $PROJECT_DIR/webapp/config`; do
-      TF_CONFIG_YML=$answer
-      break
-    done
-  fi
-fi
-echo $TF_CONFIG_YML > $CONFIG_DIR/ConfigFile
 echo
 echo Configuration settings for $SERVER_PREFIX:$USER_TAG-$REFERENCE_TAG
 echo

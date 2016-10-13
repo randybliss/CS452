@@ -19,8 +19,11 @@ load_cluster_config() {
   if [ -f $CONFIG_DIR/Region ]; then
     CONF_REGION=`cat $CONFIG_DIR/Region`
   fi
-  if [ -f $CONFIG_DIR/ConfigFile ]; then
-    CONF_TF_CONFIG_YML=`cat $CONFIG_DIR/ConfigFile`
+  if [ -f $CONFIG_DIR/ZoneCount ]; then
+    CONF_ZONE_COUNT=`cat $CONFIG_DIR/ZoneCount`
+  fi
+  if [ -f $CONFIG_DIR/ZoneList ]; then
+    CONF_ZONE_LIST=`cat $CONFIG_DIR/ZoneList`
   fi
 }
 
@@ -71,37 +74,18 @@ configure_cluster() {
   if [ "$REGION" ]; then
     PARAMS="$PARAMS --reg $REGION"
   fi
-  if [ "$TF_CONFIG_YML" ]; then
-    PARAMS="$PARAMS --configFile $TF_CONFIG_YML"
+  if [ "$CASSANDRA_EDITION" == "dse" ]; then
+    PARAMS="$PARAMS --dse"
+  fi
+  if [ "$ZONE_COUNT" ]; then
+    PARAMS="$PARAMS --zoneCount $ZONE_COUNT"
+  fi
+  if [ "$ZONE_LIST" ]; then
+    PARAMS="$PARAMS --zoneList $ZONE_LIST"
   fi
   . $SCRIPT_DIR/configureAWSCluster.sh $PARAMS
   load_cluster_config
 }
-
-get_avail_zone() {
-    unset vpc
-    echo ".Vpcs[] | if contains({IsDefault: true}) then .VpcId else empty end" > vpc-filter
-    vpc=`aws ec2 describe-vpcs --region ${REGION} | jq -f vpc-filter | tr -d '"'`
-    rm vpc-filter
-
-    unset availzones
-    echo ".Subnets[] | if .VpcId == \"$vpc\" then .AvailabilityZone + \":\" + .SubnetId else empty end" > subnet-filter
-    availzones=`aws ec2 describe-subnets --region ${REGION} | jq -f subnet-filter | tr -d '"'`
-    rm subnet-filter
-
-    count=`echo "$availzones" | wc -l | awk '{print $1}'`
-    echo "Select availability zone / subnet from the following:"
-    PS3="(enter selection 1-${count})? "; select answer in ${availzones}; do
-        zonesubnet=(`echo $answer | tr ':' ' '`)
-        zone=${zonesubnet[0]}
-        subnetId=${zonesubnet[1]}
-        unset zonesubnet
-        echo "Zone: $zone"
-        echo "id: $subnetId"
-        break
-    done
-}
-
 
 cancel_requests() {
   if [ -f $HOST_DIR/coreRequestIds ]; then
@@ -174,8 +158,78 @@ setup-directories() {
   echo "project path is $PROJECT_DIR : script path is $SCRIPT_DIR"
 }
 
+setup-cassandra-run-environment() {
+  if [ -z "$CLUSTER_TAG" ]; then
+    if [ -z "$USER_TAG" ]; then
+      echo "--tag argument missing - you must provide a unique or shared tag to run this script"
+      exit $E_BADARGS
+    else
+      CLUSTER_TAG=$USER_TAG
+    fi
+  else
+    USER_TAG=$CLUSTER_TAG
+  fi
+
+  if [ "$USER" ]; then
+    TF_USER=$USER
+  else
+    TF_USER="tf"
+  fi
+
+  CLUSTER_TYPE="CASSANDRA"
+
+  if [ -z "$DATASET_TYPE" ]; then
+    DATASET_TYPE="PROD"
+  fi
+
+  if [ -z "$PROJECT_DIR" ]; then
+    setup-directories
+  fi
+
+  REFERENCE_TAG="db"
+
+  REGION="us-east-1"
+  export AWS_DEFAULT_OUTPUT="json"
+
+  if [ "$VPC_ENV" == "dev" ]; then
+    ACCOUNT=${DEV_ACCOUNT}
+    KEY_NAME=${DEV_VPC_KEY_NAME}
+    VPC_NAME=${DEV_VPC_NAME}
+    AUX_VPC_NAME=${DEV_AUX_VPC_NAME}
+    TF_CONFIG_YML='teamdev-integration.yml'
+    IN_VPC='true'
+  elif [ "$VPC_ENV" == "test" ]; then
+    ACCOUNT=${TEST_ACCOUNT}
+    KEY_NAME=${TEST_VPC_KEY_NAME}
+    VPC_NAME=${TEST_VPC_NAME}
+    AUX_VPC_NAME=${TEST_AUX_VPC_NAME}
+    IN_VPC='true'
+  elif [ "$VPC_ENV" == "prod" ]; then
+    ACCOUNT=${PROD_ACCOUNT}
+    KEY_NAME=${PROD_VPC_KEY_NAME}
+    VPC_NAME=${PROD_VPC_NAME}
+    AUX_VPC_NAME=${PROD_AUX_VPC_NAME}
+    IN_VPC='true'
+  fi
+
+  if [[ ${IN_VPC} ]]; then
+    echo "Running in VPC: $VPC_ENV"
+  else
+    echo "Running in Eureka account"
+  fi
+
+  KEY_FILE=~/.ssh/$KEY_NAME.pem
+  CODE_BUCKET="tf-cassandra-code/codesets/$TF_USER-dbase"
+  SERVER_DISPLAY_NAME_PREFIX="TfCassandra"
+  HOST_DIR=$SCRIPT_DIR/hosts/$CLUSTER_TYPE-$CLUSTER_TAG-$REFERENCE_TAG
+  CONFIG_DIR=$SCRIPT_DIR/config/$CLUSTER_TYPE-$CLUSTER_TAG-$REFERENCE_TAG
+  opts="-i $KEY_FILE -o StrictHostKeyChecking=no"
+  if [ -f $HOST_DIR/masterPublicDnsName ]; then
+    masterPublicDnsName=`cat $HOST_DIR/masterPublicDnsName`
+  fi
+}
+
 setup-run-environment() {
-  CLUSTER_TYPE='pg'
   if [ -z "$CLUSTER_TAG" ]; then
     if [ -z "$USER_TAG" ]; then
       echo "--tag argument missing - you must provide a unique or shared tag to run this script"
@@ -240,6 +294,14 @@ createHostsCSVFile() {
   done
 }
 
+function determineVpcEnv_RUN_ON_START() {
+  unset VPC_ENV
+  echo "if contains({AccountAliases: [\"eureka\"]}) then \"eureka\" elif contains({AccountAliases: [\"dev\"]}) then \"dev\" elif contains({AccountAliases: [\"test\"]}) then \"test\" elif contains({AccountAliases: [\"prod\"]}) then \"prod\" else empty end" > account-filter
+  VPC_ENV=`aws iam list-account-aliases | jq -f account-filter | tr -d '"'`
+  rm account-filter
+}
+
 unset JARS_DIR
 USE_RAID="TRUE"
 CLUSTER_HOST="unknown"
+determineVpcEnv_RUN_ON_START

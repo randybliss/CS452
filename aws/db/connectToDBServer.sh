@@ -7,6 +7,8 @@ usage() { '# Arguments accepted:
 
 source ./includes/functions.sh
 
+CLUSTER_TAG='db'
+
 # Parse command line parameters
 while [[ $# > 1 ]]
 do
@@ -30,7 +32,7 @@ case $key in
 esac
 done
 
-setup-tfapp-run-environment
+setup-run-environment
 
 if [ -z "$USER_TAG" ]; then
   echo "Must specify user tag"
@@ -47,4 +49,4 @@ if [ ! -d $HOST_DIR ]; then
 fi
 
 masterIpAddress=`head -n 1 $HOST_DIR/sshMaster`
-ssh -i $KEY_FILE -o StrictHostKeyChecking=no fs@$masterIpAddress
+ssh -i $KEY_FILE -o StrictHostKeyChecking=no $MUSER@$masterIpAddress
