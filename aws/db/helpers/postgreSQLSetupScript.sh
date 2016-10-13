@@ -18,17 +18,50 @@ javabindir=`dirname $javabin`
 javahomedir=`dirname $javabindir`
 sudo apt-get -y install unzip
 
-echo "setting up Cassandra user" > /home/ubuntu/instanceStatus
-sudo groupadd cassandra
-sudo useradd -s /bin/bash -m -d /home/cassandra -g cassandra cassandra
-sudo su -
-cd /home/cassandra
-echo 'Defaults:cassandra  !requiretty' >> /etc/sudoers
-echo 'cassandra  ALL=(ALL) NOPASSWD: ALL' >>/etc/sudoers
+echo "installing PostgreSQL" > /home/ubuntu/instanceStatus
+sudo apt-get -y install postgresql
+cd /etc/postgresql/9.5/main
+sudo touch test.out
+sudo cp pg_hba.conf pg_hba.conf.save
+sudo sed -e "s#127.0.0.1/32#0.0.0.0/0#" pg_hba.conf > test.out
+sudo echo "host all all 0.0.0.0/0 md5" >> test.out
+sudo cp test.out pg_hba.conf
+sudo sed -e "s/#listen_addresses/listen_addresses/" postgresql.conf > test.out
+sudo touch test2.out
+sudo sed -e "s#'localhost'#'*'#" test.out > test2.out
+sudo cp test2.out postgresql.conf
+sudo pg_ctlcluster 9.5 main stop
+sudo pg_ctlcluster 9.5 main start
+sudo -u postgres psql --command "CREATE USER cs452 WITH superuser createdb password 'cs452'"
+
+
+#echo "setting up Cassandra user" > /home/ubuntu/instanceStatus
+#sudo groupadd cassandra
+#sudo useradd -s /bin/bash -m -d /home/cassandra -g cassandra cassandra
+#sudo su -
+#cd /home/cassandra
+#echo 'Defaults:cassandra  !requiretty' >> /etc/sudoers
+#echo 'cassandra  ALL=(ALL) NOPASSWD: ALL' >>/etc/sudoers
+##echo "export JAVA_HOME=$javahomedir" >> /home/cassandra/.bashrc
+#mkdir -p /home/cassandra/.ssh
+#cp /home/ubuntu/.ssh/authorized_keys /home/cassandra/.ssh/authorized_keys
+#chown -R cassandra:cassandra /home/cassandra/.ssh
+
+echo "setting up cs452 user" > /home/ubuntu/instanceStatus
+MUSER='cs452'
+sudo groupadd $MUSER
+sudo useradd -s /bin/bash -m -d /home/$MUSER -g $MUSER $MUSER
+who=`whoami`
+if [ "$who" == "ubuntu" ]; then
+  sudo su -
+fi
+cd /home/$MUSER
+echo "Defaults:${MUSER}  !requiretty" >> /etc/sudoers
+echo "${MUSER}  ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
 #echo "export JAVA_HOME=$javahomedir" >> /home/cassandra/.bashrc
-mkdir -p /home/cassandra/.ssh
-cp /home/ubuntu/.ssh/authorized_keys /home/cassandra/.ssh/authorized_keys
-chown -R cassandra:cassandra /home/cassandra/.ssh
+mkdir -p /home/$MUSER/.ssh
+cp /home/ubuntu/.ssh/authorized_keys /home/$MUSER/.ssh/authorized_keys
+chown -R $MUSER:$MUSER /home/$MUSER/.ssh
 
 #determine path to java home
 JAVA_PATH=`which javac`;
@@ -68,22 +101,22 @@ root hard nofile 1000000
 root soft nofile 1000000
 EOF
 
-cat <<EOF > /home/cassandra/setupCassandraEnv
-#!/bin/bash
-export JAVA_HOME=`cat /home/cassandra/javaHome`
-export CASSANDRA_HOME=/home/cassandra/cassandraHome
-export PATH=$CASSANDRA_HOME/bin:$CASSANDRA_HOME/tools/bin:$PATH
-EOF
-chmod +x /home/cassandra/setupCassandraEnv
-echo "source ~/setupCassandraEnv" >> /home/cassandra/.bashrc
-sudo cat <<EOF > /home/cassandra/.bash_profile
-#!/bin/bash
-if [ -f ~/.bashrc ]; then
-  source ~/.bashrc
-fi
-EOF
-chown -R cassandra:cassandra /home/cassandra
-sudo cat /home/cassandra/setupCassandraEnv >> /etc/profile
+#cat <<EOF > /home/cassandra/setupCassandraEnv
+##!/bin/bash
+#export JAVA_HOME=`cat /home/cassandra/javaHome`
+#export CASSANDRA_HOME=/home/cassandra/cassandraHome
+#export PATH=$CASSANDRA_HOME/bin:$CASSANDRA_HOME/tools/bin:$PATH
+#EOF
+#chmod +x /home/cassandra/setupCassandraEnv
+#echo "source ~/setupCassandraEnv" >> /home/cassandra/.bashrc
+#sudo cat <<EOF > /home/cassandra/.bash_profile
+##!/bin/bash
+#if [ -f ~/.bashrc ]; then
+#  source ~/.bashrc
+#fi
+#EOF
+#chown -R cassandra:cassandra /home/cassandra
+#sudo cat /home/cassandra/setupCassandraEnv >> /etc/profile
 
 #disable ipv6 (hadoop doesn't like it)
 sudo cat /etc/sysctl.conf > tempfile

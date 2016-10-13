@@ -13,7 +13,7 @@ function determineVpcEnv() {
   rm account-filter
 }
 
-if [[ "$0" == *vpc.sh ]]
+if [[ "$0" == *setAccount.sh ]]
 then
   echo "This script must be invoked by calling 'source $0' not '<path>/$0'"
   exit 1

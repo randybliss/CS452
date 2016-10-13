@@ -149,7 +149,7 @@ setup-directories() {
   echo "project path is $PROJECT_DIR : script path is $SCRIPT_DIR"
 }
 
-setup-tfapp-run-environment() {
+setup-run-environment() {
   if [ -z "$CLUSTER_TAG" ]; then
     if [ -z "$USER_TAG" ]; then
       echo "--tag argument missing - you must provide a unique or shared tag to run this script"
@@ -162,58 +162,12 @@ setup-tfapp-run-environment() {
   fi
   CODE_BUCKET="tf-webapp-code/codesets/$CLUSTER_TAG-tfapp"
 
-  if [ "$USER" ]; then
-    TF_USER=$USER
-  else
-    TF_USER="tf"
-  fi
-
-  if [ "$JANITOR" == "yes" ]; then
-    CLUSTER_TYPE="TFJAN"
-    SERVER_DISPLAY_NAME_PREFIX="TfJan"
-  else
-    CLUSTER_TYPE="TFAPP"
-    SERVER_DISPLAY_NAME_PREFIX="TfApp"
-  fi
-
-  if [ -z "$DATASET_TYPE" ]; then
-    DATASET_TYPE="PROD"
-  fi
-
   if [ -z "$PROJECT_DIR" ]; then
     setup-directories
   fi
 
-  REFERENCE_TAG="tfapp"
-
-  export REGION="us-east-1"
+  export REGION="us-west-2"
   export AWS_DEFAULT_OUTPUT="json"
-
-  if [ "$VPC_ENV" == "dev" ]; then
-    ACCOUNT=${DEV_ACCOUNT}
-    KEY_NAME=${DEV_VPC_KEY_NAME}
-    VPC_NAME=${DEV_VPC_NAME}
-    AUX_VPC_NAME=${DEV_AUX_VPC_NAME}
-    IN_VPC='true'
-  elif [ "$VPC_ENV" == "test" ]; then
-    ACCOUNT=${TEST_ACCOUNT}
-    KEY_NAME=${TEST_VPC_KEY_NAME}
-    VPC_NAME=${TEST_VPC_NAME}
-    AUX_VPC_NAME=${TEST_AUX_VPC_NAME}
-    IN_VPC='true'
-  elif [ "$VPC_ENV" == "prod" ]; then
-    ACCOUNT=${PROD_ACCOUNT}
-    KEY_NAME=${PROD_VPC_KEY_NAME}
-    VPC_NAME=${PROD_VPC_NAME}
-    AUX_VPC_NAME=${PROD_AUX_VPC_NAME}
-    IN_VPC='true'
-  fi
-
-  if [[ ${IN_VPC} ]]; then
-    echo "Running in VPC: $VPC_ENV"
-  else
-    echo "Running in Eureka account"
-  fi
 
   KEY_FILE=~/.ssh/${KEY_NAME}.pem
   HOST_DIR=$SCRIPT_DIR/hosts/$CLUSTER_TYPE-$CLUSTER_TAG-$REFERENCE_TAG
@@ -224,89 +178,6 @@ setup-tfapp-run-environment() {
   fi
   if [ -f $HOST_DIR/sshMaster ]; then
     sshMaster=`cat $HOST_DIR/sshMaster`
-  fi
-}
-
-setup-run-environment() {
-  includeCount=0
-  if [ "$INCLUDE_CYCLES" ]; then
-    ifsSave=$IFS
-    IFS=","
-    for cycle in $INCLUDE_CYCLES; do
-      let includeCount=$includeCount+1
-    done
-    IFS=$ifsSave
-  fi
-
-  if [ -z "$CLUSTER_TAG" ]; then
-    if [ -z "$USER_TAG" ]; then
-      echo "--tag argument missing - you must provide a unique or shared tag to run this script"
-      exit $E_BADARGS
-    else
-      CLUSTER_TAG=$USER_TAG
-    fi
-  else
-    USER_TAG=$CLUSTER_TAG
-  fi
-
-  if [ "$USER" ]; then
-    TF_USER=$USER
-  else
-    TF_USER="tf"
-  fi
-
-  if [ -z "$CYCLE" ]; then
-    if [ -z "$USER" ]; then
-      echo "CYCLE argument must be provided or USER environment variable must be set to run this script"
-      exit $E_BADARGS
-    else
-      if [ $includeCount -eq 0 ]; then
-        CYCLE="${USER}_BULK"
-      else
-        CYCLE="${USER}_INCREMENTAL_$includeCount"
-      fi
-    fi
-  fi
-
-  if [ -z "$CLUSTER_TYPE" ]; then
-    CLUSTER_TYPE="HADOOP"
-  fi
-
-  if [ -z "$DATASET_TYPE" ]; then
-    DATASET_TYPE="PROD"
-  fi
-
-  if [ -z "$PROJECT_DIR" ]; then
-    setup-directories
-  fi
-
-  REFERENCE_TAG="etl"
-
-  REGION="us-east-1"
-  KEY_NAME="tf-dev"
-  KEY_FILE=~/.ssh/$KEY_NAME.pem
-  REC_REDUCER_COUNT=3491
-  CV_REDUCER_COUNT=3491
-  CODE_BUCKET="tf-migration-code/codesets/$TF_USER-etl"
-  if [ "$CLUSTER_TYPE" == "HADOOP" ]; then
-    SERVER_DISPLAY_NAME_PREFIX="TfEtlHadoop"
-  elif [ "$CLUSTER_TYPE" == "CASSANDRA" ]; then
-    SERVER_DISPLAY_NAME_PREFIX="TfCassandra"
-  else
-    SERVER_DISPLAY_NAME_PREFIX="TfEtlEmr"
-  fi
-  HOST_DIR=$SCRIPT_DIR/hosts/$CLUSTER_TYPE-$CLUSTER_TAG-$REFERENCE_TAG
-  CONFIG_DIR=$SCRIPT_DIR/config/$CLUSTER_TYPE-$CLUSTER_TAG-$REFERENCE_TAG
-  RUN_LOG_DIR="/home/hadoop/runlogs/$CYCLE"
-  RLD=$RUN_LOG_DIR
-  if [ "$JARS_DIR" ]; then
-    JAR_PATH=/home/hadoop/jars/$JARS_DIR
-  else
-    JAR_PATH=/home/hadoop/jars/shared
-  fi
-  opts="-i $KEY_FILE -o StrictHostKeyChecking=no"
-  if [ -f $HOST_DIR/masterPublicDnsName ]; then
-    masterPublicDnsName=`cat $HOST_DIR/masterPublicDnsName`
   fi
 }
 
@@ -343,14 +214,6 @@ createHostsCSVFile() {
   done
 }
 
-function determineVpcEnv_RUN_ON_START() {
-  unset VPC_ENV
-  echo "if contains({AccountAliases: [\"eureka\"]}) then \"eureka\" elif contains({AccountAliases: [\"dev\"]}) then \"dev\" elif contains({AccountAliases: [\"test\"]}) then \"test\" elif contains({AccountAliases: [\"prod\"]}) then \"prod\" else empty end" > account-filter
-  VPC_ENV=`aws iam list-account-aliases | jq -f account-filter | tr -d '"'`
-  rm account-filter
-}
-
 unset JARS_DIR
 USE_RAID="TRUE"
 CLUSTER_HOST="unknown"
-determineVpcEnv_RUN_ON_START
