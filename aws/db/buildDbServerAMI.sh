@@ -127,6 +127,7 @@ cat <<EOF > ${USER_DATA_FILE}
 set -x
 exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
 echo "initializing" > /home/ubuntu/instanceStatus
+MUSER=$MUSER
 EOF
 
 cat $SCRIPT_DIR/helpers/postgreSQLSetupScript.sh >> ${USER_DATA_FILE}
