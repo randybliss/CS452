@@ -1,23 +1,32 @@
 package org.byu.cs452.examples;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.sql.*;
 
-public class FindAllPrereq {
-
-  public static void loadByuPrereqs(String[] args) {
-    new FindAllPrereq().load(args);
+/**
+ * @author blissrj
+ */
+public class FindAllAncestors {
+  public static void loadAncestorPersons(String[] args) {
+    new FindAllAncestors().loadPersons(args);
   }
 
-  public static void findPrereqs(String[] args) {
-    new FindAllPrereq().run(args);
+  public static void loadAncestorRelationships(String[] args) {
+    new FindAllAncestors().loadRelationships(args);
+  }
+
+  public static void findAncestors(String[] args) {
+    new FindAllAncestors().run(args);
   }
 
   private static final String DRIVER_NAME = "org.postgresql.Driver";
-  private static final String CONNECT_STRING = "jdbc:postgresql://127.0.0.1:5432/CS452";
-  private static final String SCHEMA_NAME = "byu_prereq";
 
+  private static final String CONNECT_STRING = "jdbc:postgresql://127.0.0.1:5432/CS452";
+  private static final String ANCESTOR_SCHEMA_NAME = "ancestors";
   private static Statement stmt = null;
+
   private static ResultSet rs = null;
   //
   // PreparedStatement instances
@@ -29,14 +38,14 @@ public class FindAllPrereq {
   private static PreparedStatement pstmtInsertIntoItrTable = null;
   private static PreparedStatement pstmtDeleteFromTmpTable = null;
   private static PreparedStatement pstmtSelectFromResTable = null;
-//  private static PreparedStatement pstmtSelectCountFromResTable = null;
+  private static PreparedStatement pstmtSelectCountFromResTable = null;
 
   private void run(String[] args) {
     Connection con = null;
 
     final String username = args[0];      // username
     final String password = args[1];      // password
-    final String seedCourseId = args[2];  // course id to get prerequisites for
+    final String seedPersonId = args[2];  // person_id to get ancestors for
 
     try {
       //
@@ -53,46 +62,46 @@ public class FindAllPrereq {
         System.out.println("failed to connect");
         return;
       }
-      con.setSchema(SCHEMA_NAME);
+      con.setSchema(ANCESTOR_SCHEMA_NAME);
 
       //
       // SQL strings
       //
-      final String SQL_CREATE_RES_TABLE =  // accumulates prerequisites
+      final String SQL_CREATE_RES_TABLE =  // accumulates ancestors
           "create temporary table res_table("
-              + "    course_id varchar(10) unique);";
+              + "    person_id varchar(10) unique);";
 
-      final String SQL_CREATE_ITR_TABLE =  // holds prerequisites for current iteration
+      final String SQL_CREATE_ITR_TABLE =  // holds ancestors for current iteration
           "create temporary table itr_table("
               + "    like res_table including all);";
 
-      final String SQL_CREATE_TMP_TABLE =  // temporarily holds iteration prerequisites
+      final String SQL_CREATE_TMP_TABLE =  // temporarily holds iteration ancestors
           "create temporary table tmp_table("
               + "    like res_table including all);";
 
 
       final String SQL_INIT_ITR_TABLE =  // initializes the iteration table with first set of prereqs
           "insert into itr_table"
-              + "    select prereq_id "
-              + "    from byu_cs_course "
-              + "    where course_id = ?;";
+              + "    select parent_id "
+              + "    from parent_child "
+              + "    where child_id = ?;";
 
       final String SQL_INSERT_INTO_RES_TABLE =   // accumulates iteration prereqs
           "insert into res_table "
-              + "    select course_id "
+              + "    select person_id "
               + "    from itr_table;";
 
       final String SQL_DELETE_FROM_TMP_TABLE = "delete from tmp_table;";
 
-      final String SQL_INSERT_INTO_TMP_TABLE =   // finds next set of prereqs
+      final String SQL_INSERT_INTO_TMP_TABLE =   // finds next set of ancestors
           "insert into tmp_table "
-              + "    (select C.prereq_id "
-              + "     from itr_table I, byu_cs_course C "
-              + "     where I.course_id = C.course_id "
-              + "           and C.prereq_id is not null"
+              + "    (select PC.parent_id "
+              + "     from itr_table I, parent_child PC "
+              + "     where I.person_id = PC.child_id "
+              + "           and PC.parent_id is not null"
               + "    )"
-              + "    except "   // exclude prereqs already accumulated, set operation eliminates duplications
-              + "   (select course_id "
+              + "    except "   // exclude prereqs already accumulated, set 'except' operation eliminates duplications
+              + "   (select person_id "
               + "    from res_table"
               + "   );";
 
@@ -100,7 +109,7 @@ public class FindAllPrereq {
 
       final String SQL_INSERT_INTO_ITR_TABLE = // copies from temporary table into iteration table
           "insert into itr_table "
-              + "    select course_id "
+              + "    select person_id "
               + "    from tmp_table;";
 
       final String SQL_SELECT_FROM_RES_TABLE = "select * from res_table;";
@@ -116,41 +125,46 @@ public class FindAllPrereq {
       pstmtDeleteFromItrTable = con.prepareStatement(SQL_DELETE_FROM_ITR_TABLE);            // cleans out the tmp table
       pstmtInsertIntoItrTable = con.prepareStatement(SQL_INSERT_INTO_ITR_TABLE);            // copies from tmp to itr table
       pstmtSelectFromResTable = con.prepareStatement(SQL_SELECT_FROM_RES_TABLE);            // get accumulated results
-//      pstmtSelectCountFromResTable = con.prepareStatement(SQL_SELECT_COUNT_FROM_RES_TABLE); // get accumulated results
+      pstmtSelectCountFromResTable = con.prepareStatement(SQL_SELECT_COUNT_FROM_RES_TABLE); // get accumulated results
       //
       // create the local tables
-      //    res_table: accumulates the results (course prerequisites)
-      //    itr_table: holds prerequisites for current loop iteration
-      //    tmp_table: temporarily hold prerequisites
+      //    res_table: accumulates the results (course ancestors)
+      //    itr_table: holds ancestors for current loop iteration
+      //    tmp_table: temporarily hold ancestors
       //
       con.createStatement().executeUpdate(SQL_CREATE_RES_TABLE);
       con.createStatement().executeUpdate(SQL_CREATE_ITR_TABLE);
       con.createStatement().executeUpdate(SQL_CREATE_TMP_TABLE);
       //
-      // initialize the iter table with first set of prerequisites
+      // initialize the iter table with first set of ancestors
       //
-      pstmtInitItrTable.setString(1, seedCourseId);
+      pstmtInitItrTable.setString(1, seedPersonId);
       pstmtInitItrTable.executeUpdate();
       //
       // enter the iteration loop
       //
       do {
-        pstmtInsertIntoResTable.executeUpdate();  // accumulate the prerequisites
+        pstmtInsertIntoResTable.executeUpdate();  // accumulate the ancestors
         pstmtDeleteFromTmpTable.executeUpdate();  // clean out the temporary table from previous iteration
-        pstmtInsertIntoTmpTable.executeUpdate();  // insert new prerequisites into temporary table
+        pstmtInsertIntoTmpTable.executeUpdate();  // insert new ancestors into temporary table
         pstmtDeleteFromItrTable.executeUpdate();  // clean out the iteration table from previous iteration
       } while (0 < pstmtInsertIntoItrTable.executeUpdate()); // copy into iteration table, exit if no tuples
 
       rs = pstmtSelectFromResTable.executeQuery();
       //
-      // get result set from result accumulation table and print out prerequisites
+      // get result set from result accumulation table and print out ancestors
       //
       while (rs.next()) {
         System.out.println(rs.getString(1));
       }
+
+      rs = pstmtSelectCountFromResTable.executeQuery();
+      if (rs.next()) {
+        System.out.println(String.format("Number of ancestors = %1$s", rs.getLong(1)));
+      }
     }
     catch (ClassNotFoundException | SQLException ex) {
-      throw new RuntimeException("Unexpected exception attempting to get prerequisites", ex);
+      throw new RuntimeException("Unexpected exception attempting to get ancestors", ex);
     }
     finally {
       //
@@ -192,29 +206,53 @@ public class FindAllPrereq {
     }
   }
 
-  private void load(String[] args) {
+  private void loadPersons(String[] args) {
     String username = args[0];
     String password = args[1];
     String filepath = args[2];
 
-    try {
-      Class.forName(DRIVER_NAME);
-    }
-    catch (ClassNotFoundException e) {
-      throw new RuntimeException("Unexpected exception attempting to set up database driver", e);
-    }
+    try (Connection conn = getConnection(username, password);
+         PreparedStatement ps = conn.prepareStatement("INSERT INTO person (person_id, gender) VALUES (?,?)");
+         Statement stmt = conn.createStatement()) {
+      stmt.executeUpdate("create table if not exists person(\n" +
+                            "person_id varchar(10) primary key,\n" +
+                            "gender varchar(1),\n" +
+                            "unique(person_id, gender));\n");
 
-    try (Connection conn = DriverManager.getConnection(CONNECT_STRING, username, password);
-            PreparedStatement ps = conn.prepareStatement("INSERT INTO byu_cs_course (course_id,prereq_id) VALUES (?,?)");
-            Statement stmt = conn.createStatement()) {
-      conn.setSchema(SCHEMA_NAME);
-      stmt.executeUpdate("create table if not exists byu_cs_course(\n" +
-                            "course_id varchar(10) not null,\n" +
-                            "prereq_id varchar(10));\n");
+      stmt.executeUpdate("DELETE FROM person");
+      loadTable(filepath, ps);
+    }
+    catch (SQLException e) {
+      throw new RuntimeException("Unexpected exception attempting to set up database connection", e);
+    }
+  }
 
-      stmt.executeUpdate("DELETE FROM byu_cs_course");
+  //  private static PreparedStatement pstmtSelectCountFromResTable = null;
+  private void loadRelationships(String[] args) {
+
+    String username = args[0];
+    String password = args[1];
+    String filepath = args[2];
+
+    try (Connection conn = getConnection(username, password);
+         PreparedStatement ps = conn.prepareStatement("INSERT INTO parent_child (child_id, parent_id) VALUES (?,?)");
+         Statement stmt = conn.createStatement()) {
+      stmt.executeUpdate("create table if not exists parent_child(\n" +
+          "child_id varchar(10) references person,\n" +
+          "parent_id varchar(10) references person,\n" +
+          "unique(parent_id, child_id));\n");
+      stmt.executeUpdate("DELETE FROM parent_child");
+      loadTable(filepath, ps);
+    }
+    catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  private void loadTable(String filepath, PreparedStatement ps) {
 
       try (BufferedReader br = new BufferedReader(new FileReader(filepath))){
+        br.readLine();  // Throw away title line
         String line = br.readLine();
         while (line != null) {
           String[] courseData = line.split(",");
@@ -228,9 +266,22 @@ public class FindAllPrereq {
       catch (IOException | SQLException e) {
         throw new RuntimeException("Unexpected exception loading byu_cs_prereq table", e);
       }
+  }
+
+  private Connection getConnection(String username, String password) {
+    try {
+      Class.forName(DRIVER_NAME);
+    }
+    catch (ClassNotFoundException e) {
+      throw new RuntimeException("Unexpected exception attempting to set up database driver", e);
+    }
+    try {
+      Connection conn = DriverManager.getConnection(CONNECT_STRING, username, password);
+      conn.setSchema(ANCESTOR_SCHEMA_NAME);
+      return conn;
     }
     catch (SQLException e) {
-      throw new RuntimeException("Unexpected exception attempting to set up database connection", e);
+      throw new RuntimeException("Unexpected exception attempting to get connection to database: " + CONNECT_STRING, e);
     }
   }
 
@@ -240,7 +291,7 @@ public class FindAllPrereq {
     System.out.println(String.format("\n%-25s%,15.2f microseconds", testName, delta));
     System.out.println("-----------------------------------------------------");
     //
-    // get result set from result accumulation table and print out prerequisites
+    // get result set from result accumulation table and print out ancestors
     //
     while (rs.next()) {
       System.out.println(rs.getString(1));

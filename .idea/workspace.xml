@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="790a56ea-7709-4598-a057-a785ddda4522" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/aws/db/createDbServerAMI.sh" afterPath="$PROJECT_DIR$/aws/db/buildDbServerAMI.sh" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/org/byu/cs452/examples/FindAllAncestors.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/org/byu/cs452/examples/FindAllAncestorsTest.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/java/org/byu/cs452/FindAllPrereqTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/byu/cs452/examples/FindAllPrereqTest.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/java/org/byu/cs452/JDBCSimpleExampleTest.java" afterPath="$PROJECT_DIR$/src/test/java/org/byu/cs452/examples/JDBCSimpleExampleTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/aws/db/.gitignore" afterPath="$PROJECT_DIR$/aws/db/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/org/byu/cs452/examples/FindAllPrereq.java" afterPath="$PROJECT_DIR$/src/main/java/org/byu/cs452/examples/FindAllPrereq.java" />
     </list>
     <ignored path="cs452.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,28 +31,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="buildDbServerAMI.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aws/db/buildDbServerAMI.sh">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
-              <folding>
-                <marker date="1476393038000" expanded="true" signature="3152:3206" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aws/db/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="clusterId" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/aws/db/hosts/pg-db-CS452/clusterId">
           <provider selected="true" editor-type-id="text-editor">
@@ -90,7 +71,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="corePrivateDnsNames" pinned="false" current-in-tab="true">
+      <file leaf-file-name="corePrivateDnsNames" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/aws/db/hosts/pg-db-CS452/corePrivateDnsNames">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -100,32 +81,116 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="connectToDBServer.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aws/db/connectToDBServer.sh">
+      <file leaf-file-name="FindAllAncestors.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/byu/cs452/examples/FindAllAncestors.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
-              <folding />
+            <state relative-caret-position="2703">
+              <caret line="159" column="0" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#254#255#0" expanded="true" />
+                <element signature="e#304#305#0" expanded="true" />
+                <element signature="e#369#370#0" expanded="true" />
+                <element signature="e#425#426#0" expanded="true" />
+                <element signature="e#478#479#0" expanded="true" />
+                <element signature="e#520#521#0" expanded="true" />
+                <marker date="1476799861000" expanded="true" signature="2828:2971" ph="insert into itr_table... " />
+                <marker date="1476799861000" expanded="true" signature="2872:2971" ph="select prere... byu_cs_course" />
+                <marker date="1476799861000" expanded="true" signature="3069:3168" ph="insert into res_table... " />
+                <marker date="1476799861000" expanded="true" signature="3114:3168" ph="select cours... itr_table" />
+                <marker date="1476799861000" expanded="true" signature="3221:3242" ph="delete from " />
+                <marker date="1476799861000" expanded="true" signature="3338:3819" ph="insert into tmp_table... " />
+                <marker date="1476799861000" expanded="true" signature="3384:3576" ph="select C.pre... itr_table" />
+                <marker date="1476799861000" expanded="true" signature="3742:3796" ph="select cours... res_table" />
+                <marker date="1476799861000" expanded="true" signature="3872:3893" ph="delete from " />
+                <marker date="1476799861000" expanded="true" signature="4008:4107" ph="insert into itr_table... " />
+                <marker date="1476799861000" expanded="true" signature="4053:4107" ph="select cours... tmp_table" />
+                <marker date="1476799861000" expanded="true" signature="4160:4183" ph="select * fro... res_table" />
+                <marker date="1476799861000" expanded="true" signature="4241:4271" ph="select count... res_table" />
+                <marker date="1476799861000" expanded="true" signature="7912:7942" ph="drop table i... " />
+                <marker date="1476799861000" expanded="true" signature="7994:8024" ph="drop table i... " />
+                <marker date="1476799861000" expanded="true" signature="8076:8106" ph="drop table i... " />
+                <marker date="1476799861000" expanded="true" signature="8503:8554" ph="INSERT INTO byu_cs_course... " />
+                <marker date="1476799861000" expanded="true" signature="8636:8792" ph="create table... person" />
+                <marker date="1476799861000" expanded="true" signature="8636:8794" ph="create table... person" />
+                <marker date="1476799861000" expanded="true" signature="8636:8853" ph="create table... if" />
+                <marker date="1476799861000" expanded="true" signature="8636:8854" ph="create table... person" />
+                <marker date="1476799861000" expanded="true" signature="8887:8899" ph="DELETE FROM " />
+                <marker date="1476799861000" expanded="true" signature="8887:8905" ph="DELETE FROM " />
+                <marker date="1476799861000" expanded="true" signature="9426:9485" ph="INSERT INTO parent_child... " />
+                <marker date="1476799861000" expanded="true" signature="9567:9765" ph="create table... if" />
+                <marker date="1476799861000" expanded="true" signature="9798:9822" ph="DELETE FROM " />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="functions.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aws/db/includes/functions.sh">
+      <file leaf-file-name="FindAllPrereqTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/byu/cs452/examples/FindAllPrereqTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="655">
-              <caret line="207" column="1" selection-start-line="207" selection-start-column="1" selection-end-line="207" selection-end-column="1" />
-              <folding />
+            <state relative-caret-position="120">
+              <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+              <folding>
+                <element signature="e#192#193#0" expanded="true" />
+                <element signature="e#275#276#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="constants.sh" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/aws/db/includes/constants.sh">
+      <file leaf-file-name="JDBCSimpleExampleTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/byu/cs452/examples/JDBCSimpleExampleTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FindAllAncestorsTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/org/byu/cs452/examples/FindAllAncestorsTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FindAllPrereq.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/org/byu/cs452/examples/FindAllPrereq.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="507">
+              <caret line="76" column="41" selection-start-line="76" selection-start-column="41" selection-end-line="76" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#152#153#0" expanded="true" />
+                <element signature="e#192#193#0" expanded="true" />
+                <element signature="e#243#244#0" expanded="true" />
+                <element signature="e#282#283#0" expanded="true" />
+                <marker date="1476802007000" expanded="true" signature="2590:2735" ph="insert into itr_table... " />
+                <marker date="1476802007000" expanded="true" signature="2634:2735" ph="select prere... byu_cs_course" />
+                <marker date="1476802007000" expanded="true" signature="2833:2932" ph="insert into res_table... " />
+                <marker date="1476802007000" expanded="true" signature="2878:2932" ph="select cours... itr_table" />
+                <marker date="1476802007000" expanded="true" signature="2985:3006" ph="delete from " />
+                <marker date="1476802007000" expanded="true" signature="3100:3570" ph="insert into tmp_table... " />
+                <marker date="1476802007000" expanded="true" signature="3146:3336" ph="select C.pre... itr_table" />
+                <marker date="1476802007000" expanded="true" signature="3493:3547" ph="select cours... res_table" />
+                <marker date="1476802007000" expanded="true" signature="3623:3644" ph="delete from " />
+                <marker date="1476802007000" expanded="true" signature="3759:3858" ph="insert into itr_table... " />
+                <marker date="1476802007000" expanded="true" signature="3804:3858" ph="select cours... tmp_table" />
+                <marker date="1476802007000" expanded="true" signature="3911:3934" ph="select * fro... res_table" />
+                <marker date="1476802007000" expanded="true" signature="3992:4022" ph="select count... res_table" />
+                <marker date="1476802007000" expanded="true" signature="7521:7551" ph="drop table i... " />
+                <marker date="1476802007000" expanded="true" signature="7603:7633" ph="drop table i... " />
+                <marker date="1476802007000" expanded="true" signature="7685:7715" ph="drop table i... " />
+                <marker date="1476802007000" expanded="true" signature="8332:8392" ph="INSERT INTO byu_cs_course... " />
+                <marker date="1476802007000" expanded="true" signature="8512:8676" ph="create table... if" />
+                <marker date="1476802007000" expanded="true" signature="8512:8677" ph="create table... if" />
+                <marker date="1476802007000" expanded="true" signature="8710:8729" ph="DELETE FROM " />
+                <marker date="1476802007000" expanded="true" signature="8710:8735" ph="DELETE FROM " />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -182,7 +247,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/byu_cs_courses.csv" />
         <option value="$PROJECT_DIR$/src/main/java/org/byu/cs452/FindAllPrereq.java" />
         <option value="$PROJECT_DIR$/src/main/resources/byu-cs-courses.csv" />
-        <option value="$PROJECT_DIR$/src/main/java/org/byu/cs452/examples/FindAllPrereq.java" />
         <option value="$PROJECT_DIR$/src/test/java/org/byu/cs452/FindAllPrereqTest.java" />
         <option value="$PROJECT_DIR$/aws/db/setAccount.sh" />
         <option value="$PROJECT_DIR$/aws/db/includes/cassfunctions.sh" />
@@ -197,6 +261,11 @@
         <option value="$PROJECT_DIR$/aws/db/connectToDBServer.sh" />
         <option value="$PROJECT_DIR$/aws/db/buildDbServerAMI.sh" />
         <option value="$PROJECT_DIR$/aws/db/.gitignore" />
+        <option value="$PROJECT_DIR$/aws/db/hosts/pg-db-CS452/corePrivateDnsNames" />
+        <option value="$PROJECT_DIR$/src/main/java/org/byu/cs452/examples/FindAllAncestors.java" />
+        <option value="$PROJECT_DIR$/src/main/java/org/byu/cs452/examples/FindAllPrereq.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/byu/cs452/examples/FindAllAncestorsTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/org/byu/cs452/examples/FindAllPrereqTest.java" />
       </list>
     </option>
   </component>
@@ -234,8 +303,8 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1392" />
-    <option name="height" value="804" />
+    <option name="width" value="1539" />
+    <option name="height" value="961" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -703,7 +772,41 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cs452" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="examples" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cs452" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="CS452" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -811,76 +914,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cs452" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CS452" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="aws" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="db" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cs452" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CS452" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="aws" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="db" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="includes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cs452" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CS452" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="aws" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="db" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hosts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pg-db-CS452" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="PackagesPane" />
@@ -930,106 +963,7 @@
       <recent name="$PROJECT_DIR$/aws/db/helpers" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.FindAllPrereqTest.testFindAllPrereqTest">
-    <configuration default="false" name="JDBCSimpleExampleTest.testDemo" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="org.byu.cs452.examples.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="cs452" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" value="org.byu.cs452" />
-      <option name="MAIN_CLASS_NAME" value="org.byu.cs452.JDBCSimpleExampleTest" />
-      <option name="METHOD_NAME" value="testDemo" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <envs />
-      <properties />
-      <listeners />
-      <method />
-    </configuration>
-    <configuration default="false" name="JDBCSimpleExampleTest" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="org.byu.cs452.examples.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="cs452" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" value="org.byu.cs452" />
-      <option name="MAIN_CLASS_NAME" value="org.byu.cs452.JDBCSimpleExampleTest" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <envs />
-      <properties />
-      <listeners />
-      <method />
-    </configuration>
-    <configuration default="false" name="CS452ControllerTest.testRegisterStudent" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="org.byu.cs452.examples.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="cs452" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" value="" />
-      <option name="PACKAGE_NAME" value="org.byu.cs452" />
-      <option name="MAIN_CLASS_NAME" value="org.byu.cs452.CS452ControllerTest" />
-      <option name="METHOD_NAME" value="testRegisterStudent" />
-      <option name="GROUP_NAME" value="" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
-      <option name="OUTPUT_DIRECTORY" value="" />
-      <option name="ANNOTATION_TYPE" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" value="" />
-      <envs />
-      <properties />
-      <listeners />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="TestNG.JDBCSimpleExampleTest.testDemo">
     <configuration default="false" name="FindAllPrereqTest.testFindAllPrereqTest" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1042,7 +976,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SUITE_NAME" />
       <option name="PACKAGE_NAME" value="org.byu.cs452" />
-      <option name="MAIN_CLASS_NAME" value="org.byu.cs452.FindAllPrereqTest" />
+      <option name="MAIN_CLASS_NAME" value="org.byu.cs452.examples.FindAllPrereqTest" />
       <option name="METHOD_NAME" value="testFindAllPrereqTest" />
       <option name="GROUP_NAME" />
       <option name="TEST_OBJECT" value="METHOD" />
@@ -1063,7 +997,7 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="false" name="FindAllPrereqTest.testLoadByuCsPrereqs" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="FindAllAncestorsTest.testLoadPersons" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="org.byu.cs452.examples.*" />
@@ -1074,9 +1008,108 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" value="org.byu.cs452" />
-      <option name="MAIN_CLASS_NAME" value="org.byu.cs452.FindAllPrereqTest" />
-      <option name="METHOD_NAME" value="testLoadByuCsPrereqs" />
+      <option name="PACKAGE_NAME" value="org.byu.cs452.examples" />
+      <option name="MAIN_CLASS_NAME" value="org.byu.cs452.examples.FindAllAncestorsTest" />
+      <option name="METHOD_NAME" value="testLoadPersons" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="false" name="FindAllAncestorsTest.testLoadPCRelationships" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="org.byu.cs452.examples.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="cs452" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" value="org.byu.cs452.examples" />
+      <option name="MAIN_CLASS_NAME" value="org.byu.cs452.examples.FindAllAncestorsTest" />
+      <option name="METHOD_NAME" value="testLoadPCRelationships" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="false" name="FindAllAncestorsTest.testFindAllAncestors" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="org.byu.cs452.examples.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="cs452" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" value="org.byu.cs452.examples" />
+      <option name="MAIN_CLASS_NAME" value="org.byu.cs452.examples.FindAllAncestorsTest" />
+      <option name="METHOD_NAME" value="testFindAllAncestors" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+      <method />
+    </configuration>
+    <configuration default="false" name="JDBCSimpleExampleTest.testDemo" type="TestNG" factoryName="TestNG" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="org.byu.cs452.examples.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="cs452" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" value="org.byu.cs452.examples" />
+      <option name="MAIN_CLASS_NAME" value="org.byu.cs452.examples.JDBCSimpleExampleTest" />
+      <option name="METHOD_NAME" value="testDemo" />
       <option name="GROUP_NAME" />
       <option name="TEST_OBJECT" value="METHOD" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -1720,19 +1753,19 @@
     <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Remote.Unnamed" />
       <item index="1" class="java.lang.String" itemvalue="Spring Boot.CS452Application" />
-      <item index="2" class="java.lang.String" itemvalue="TestNG.JDBCSimpleExampleTest.testDemo" />
-      <item index="3" class="java.lang.String" itemvalue="TestNG.JDBCSimpleExampleTest" />
-      <item index="4" class="java.lang.String" itemvalue="TestNG.CS452ControllerTest.testRegisterStudent" />
-      <item index="5" class="java.lang.String" itemvalue="TestNG.FindAllPrereqTest.testFindAllPrereqTest" />
-      <item index="6" class="java.lang.String" itemvalue="TestNG.FindAllPrereqTest.testLoadByuCsPrereqs" />
+      <item index="2" class="java.lang.String" itemvalue="TestNG.FindAllPrereqTest.testFindAllPrereqTest" />
+      <item index="3" class="java.lang.String" itemvalue="TestNG.FindAllAncestorsTest.testLoadPersons" />
+      <item index="4" class="java.lang.String" itemvalue="TestNG.FindAllAncestorsTest.testLoadPCRelationships" />
+      <item index="5" class="java.lang.String" itemvalue="TestNG.FindAllAncestorsTest.testFindAllAncestors" />
+      <item index="6" class="java.lang.String" itemvalue="TestNG.JDBCSimpleExampleTest.testDemo" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="TestNG.FindAllPrereqTest.testFindAllPrereqTest" />
-        <item index="1" class="java.lang.String" itemvalue="TestNG.FindAllPrereqTest.testLoadByuCsPrereqs" />
-        <item index="2" class="java.lang.String" itemvalue="TestNG.CS452ControllerTest.testRegisterStudent" />
-        <item index="3" class="java.lang.String" itemvalue="TestNG.JDBCSimpleExampleTest.testDemo" />
-        <item index="4" class="java.lang.String" itemvalue="TestNG.JDBCSimpleExampleTest" />
+        <item index="0" class="java.lang.String" itemvalue="TestNG.JDBCSimpleExampleTest.testDemo" />
+        <item index="1" class="java.lang.String" itemvalue="TestNG.FindAllAncestorsTest.testFindAllAncestors" />
+        <item index="2" class="java.lang.String" itemvalue="TestNG.FindAllAncestorsTest.testLoadPCRelationships" />
+        <item index="3" class="java.lang.String" itemvalue="TestNG.FindAllAncestorsTest.testLoadPersons" />
+        <item index="4" class="java.lang.String" itemvalue="TestNG.FindAllPrereqTest.testFindAllPrereqTest" />
       </list>
     </recent_temporary>
   </component>
@@ -1750,48 +1783,48 @@
       <option name="presentableId" value="Default" />
       <updated>1474951762294</updated>
       <workItem from="1474951768260" duration="60427000" />
-      <workItem from="1475597473539" duration="88706000" />
+      <workItem from="1475597473539" duration="102692000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="FindAllPrereqTest_testFindAllPrereqTest - 2016.10.11 at 01h 28m 36s.xml">
-      <configuration name="FindAllPrereqTest.testFindAllPrereqTest" configurationId="TestNG" />
+    <history-entry file="FindAllAncestorsTest_testFindAllAncestors - 2016.10.17 at 23h 37m 18s.xml">
+      <configuration name="FindAllAncestorsTest.testFindAllAncestors" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="FindAllPrereqTest_testFindAllPrereqTest - 2016.10.11 at 01h 29m 52s.xml">
-      <configuration name="FindAllPrereqTest.testFindAllPrereqTest" configurationId="TestNG" />
+    <history-entry file="FindAllAncestorsTest_testFindAllAncestors - 2016.10.17 at 23h 49m 42s.xml">
+      <configuration name="FindAllAncestorsTest.testFindAllAncestors" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="FindAllPrereqTest_testFindAllPrereqTest - 2016.10.11 at 08h 28m 13s.xml">
-      <configuration name="FindAllPrereqTest.testFindAllPrereqTest" configurationId="TestNG" />
+    <history-entry file="FindAllAncestorsTest_testFindAllAncestors - 2016.10.17 at 23h 51m 21s.xml">
+      <configuration name="FindAllAncestorsTest.testFindAllAncestors" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="FindAllPrereqTest_testFindAllPrereqTest - 2016.10.11 at 10h 20m 59s.xml">
-      <configuration name="FindAllPrereqTest.testFindAllPrereqTest" configurationId="TestNG" />
+    <history-entry file="FindAllAncestorsTest_testFindAllAncestors - 2016.10.18 at 08h 49m 45s.xml">
+      <configuration name="FindAllAncestorsTest.testFindAllAncestors" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="FindAllPrereqTest_testLoadByuCsPrereqs - 2016.10.11 at 01h 29m 48s.xml">
-      <configuration name="FindAllPrereqTest.testLoadByuCsPrereqs" configurationId="TestNG" />
+    <history-entry file="FindAllAncestorsTest_testFindAllAncestors - 2016.10.18 at 08h 50m 17s.xml">
+      <configuration name="FindAllAncestorsTest.testFindAllAncestors" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="FindAllPrereqTest_testLoadByuCsPrereqs - 2016.10.11 at 08h 23m 28s.xml">
-      <configuration name="FindAllPrereqTest.testLoadByuCsPrereqs" configurationId="TestNG" />
+    <history-entry file="FindAllAncestorsTest_testLoadPCRelationships - 2016.10.17 at 22h 58m 35s.xml">
+      <configuration name="FindAllAncestorsTest.testLoadPCRelationships" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="FindAllPrereqTest_testLoadByuCsPrereqs - 2016.10.11 at 08h 25m 44s.xml">
-      <configuration name="FindAllPrereqTest.testLoadByuCsPrereqs" configurationId="TestNG" />
+    <history-entry file="FindAllAncestorsTest_testLoadPersons - 2016.10.17 at 22h 53m 41s.xml">
+      <configuration name="FindAllAncestorsTest.testLoadPersons" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="FindAllPrereqTest_testLoadByuCsPrereqs - 2016.10.11 at 08h 27m 52s.xml">
-      <configuration name="FindAllPrereqTest.testLoadByuCsPrereqs" configurationId="TestNG" />
+    <history-entry file="FindAllAncestorsTest_testLoadPersons - 2016.10.17 at 22h 54m 31s.xml">
+      <configuration name="FindAllAncestorsTest.testLoadPersons" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="FindAllPrereqTest_testLoadByuCsPrereqs - 2016.10.11 at 08h 39m 40s.xml">
-      <configuration name="FindAllPrereqTest.testLoadByuCsPrereqs" configurationId="TestNG" />
+    <history-entry file="FindAllAncestorsTest_testLoadPersons - 2016.10.17 at 22h 56m 38s.xml">
+      <configuration name="FindAllAncestorsTest.testLoadPersons" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="FindAllPrereqTest_testLoadByuCsPrereqs - 2016.10.11 at 10h 19m 09s.xml">
-      <configuration name="FindAllPrereqTest.testLoadByuCsPrereqs" configurationId="TestNG" />
+    <history-entry file="JDBCSimpleExampleTest_testDemo - 2016.10.18 at 08h 51m 01s.xml">
+      <configuration name="JDBCSimpleExampleTest.testDemo" configurationId="TestNG" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="149133000" />
+    <option name="totallyTimeSpent" value="163119000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1392" height="804" extended-state="0" />
-    <editor active="false" />
+    <frame x="0" y="23" width="1539" height="961" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1801,20 +1834,20 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.015588915" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32858837" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39027777" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3890866" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29259259" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18904476" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2682216" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2682216" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30695444" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24911033" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1864,7 +1897,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="44" />
+      <option name="time" value="47" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1873,22 +1906,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.3.RELEASE/spring-web-4.3.3.RELEASE-sources.jar!/org/springframework/http/HttpStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2610">
-          <caret line="188" column="2" selection-start-line="188" selection-start-column="2" selection-end-line="188" selection-end-column="2" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/src.zip!/java/sql/DriverManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="235" column="29" selection-start-line="235" selection-start-column="29" selection-end-line="235" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_91.jdk/Contents/Home/src.zip!/java/io/BufferedReader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="344">
@@ -2038,30 +2055,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/byu/cs452/JDBCSimpleExampleTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#205#206#0" expanded="false" />
-            <element signature="e#239#240#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/org/byu/cs452/FindAllPrereqTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#229#230#0" expanded="false" />
-            <element signature="e#312#313#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/org/byu/cs452/CS452ControllerTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -2153,37 +2146,6 @@
         <state relative-caret-position="338">
           <caret line="37" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/org/byu/cs452/examples/FindAllPrereq.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1476196756000" expanded="true" signature="2533:2678" ph="insert into itr_table... " />
-            <marker date="1476196756000" expanded="true" signature="2577:2678" ph="select prere... byu_cs_course" />
-            <marker date="1476196756000" expanded="true" signature="2776:2875" ph="insert into res_table... " />
-            <marker date="1476196756000" expanded="true" signature="2821:2875" ph="select cours... itr_table" />
-            <marker date="1476196756000" expanded="true" signature="2928:2949" ph="delete from " />
-            <marker date="1476196756000" expanded="true" signature="3043:3513" ph="insert into tmp_table... " />
-            <marker date="1476196756000" expanded="true" signature="3089:3279" ph="select C.pre... itr_table" />
-            <marker date="1476196756000" expanded="true" signature="3436:3490" ph="select cours... res_table" />
-            <marker date="1476196756000" expanded="true" signature="3566:3587" ph="delete from " />
-            <marker date="1476196756000" expanded="true" signature="3702:3801" ph="insert into itr_table... " />
-            <marker date="1476196756000" expanded="true" signature="3747:3801" ph="select cours... tmp_table" />
-            <marker date="1476196756000" expanded="true" signature="3854:3877" ph="select * fro... res_table" />
-            <marker date="1476196756000" expanded="true" signature="3935:3965" ph="select count... res_table" />
-            <marker date="1476196756000" expanded="true" signature="7464:7494" ph="drop table i... " />
-            <marker date="1476196756000" expanded="true" signature="7546:7576" ph="drop table i... " />
-            <marker date="1476196756000" expanded="true" signature="7628:7658" ph="drop table i... " />
-            <marker date="1476196756000" expanded="true" signature="8275:8335" ph="INSERT INTO byu_cs_course... " />
-            <marker date="1476196756000" expanded="true" signature="8456:8620" ph="create table... if" />
-            <marker date="1476196756000" expanded="true" signature="8456:8621" ph="create table... if" />
-            <marker date="1476196756000" expanded="true" signature="8654:8673" ph="DELETE FROM " />
-            <marker date="1476196756000" expanded="true" signature="8654:8679" ph="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2330,6 +2292,110 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/byu/cs452/examples/FindAllAncestors.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2703">
+          <caret line="159" column="0" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#254#255#0" expanded="true" />
+            <element signature="e#304#305#0" expanded="true" />
+            <element signature="e#369#370#0" expanded="true" />
+            <element signature="e#425#426#0" expanded="true" />
+            <element signature="e#478#479#0" expanded="true" />
+            <element signature="e#520#521#0" expanded="true" />
+            <marker date="1476799861000" expanded="true" signature="2828:2971" ph="insert into itr_table... " />
+            <marker date="1476799861000" expanded="true" signature="2872:2971" ph="select prere... byu_cs_course" />
+            <marker date="1476799861000" expanded="true" signature="3069:3168" ph="insert into res_table... " />
+            <marker date="1476799861000" expanded="true" signature="3114:3168" ph="select cours... itr_table" />
+            <marker date="1476799861000" expanded="true" signature="3221:3242" ph="delete from " />
+            <marker date="1476799861000" expanded="true" signature="3338:3819" ph="insert into tmp_table... " />
+            <marker date="1476799861000" expanded="true" signature="3384:3576" ph="select C.pre... itr_table" />
+            <marker date="1476799861000" expanded="true" signature="3742:3796" ph="select cours... res_table" />
+            <marker date="1476799861000" expanded="true" signature="3872:3893" ph="delete from " />
+            <marker date="1476799861000" expanded="true" signature="4008:4107" ph="insert into itr_table... " />
+            <marker date="1476799861000" expanded="true" signature="4053:4107" ph="select cours... tmp_table" />
+            <marker date="1476799861000" expanded="true" signature="4160:4183" ph="select * fro... res_table" />
+            <marker date="1476799861000" expanded="true" signature="4241:4271" ph="select count... res_table" />
+            <marker date="1476799861000" expanded="true" signature="7912:7942" ph="drop table i... " />
+            <marker date="1476799861000" expanded="true" signature="7994:8024" ph="drop table i... " />
+            <marker date="1476799861000" expanded="true" signature="8076:8106" ph="drop table i... " />
+            <marker date="1476799861000" expanded="true" signature="8503:8554" ph="INSERT INTO byu_cs_course... " />
+            <marker date="1476799861000" expanded="true" signature="8636:8792" ph="create table... person" />
+            <marker date="1476799861000" expanded="true" signature="8636:8794" ph="create table... person" />
+            <marker date="1476799861000" expanded="true" signature="8636:8853" ph="create table... if" />
+            <marker date="1476799861000" expanded="true" signature="8636:8854" ph="create table... person" />
+            <marker date="1476799861000" expanded="true" signature="8887:8899" ph="DELETE FROM " />
+            <marker date="1476799861000" expanded="true" signature="8887:8905" ph="DELETE FROM " />
+            <marker date="1476799861000" expanded="true" signature="9426:9485" ph="INSERT INTO parent_child... " />
+            <marker date="1476799861000" expanded="true" signature="9567:9765" ph="create table... if" />
+            <marker date="1476799861000" expanded="true" signature="9798:9822" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/org/byu/cs452/examples/FindAllPrereq.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="76" column="41" selection-start-line="76" selection-start-column="41" selection-end-line="76" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#152#153#0" expanded="true" />
+            <element signature="e#192#193#0" expanded="true" />
+            <element signature="e#243#244#0" expanded="true" />
+            <element signature="e#282#283#0" expanded="true" />
+            <marker date="1476802007000" expanded="true" signature="2590:2735" ph="insert into itr_table... " />
+            <marker date="1476802007000" expanded="true" signature="2634:2735" ph="select prere... byu_cs_course" />
+            <marker date="1476802007000" expanded="true" signature="2833:2932" ph="insert into res_table... " />
+            <marker date="1476802007000" expanded="true" signature="2878:2932" ph="select cours... itr_table" />
+            <marker date="1476802007000" expanded="true" signature="2985:3006" ph="delete from " />
+            <marker date="1476802007000" expanded="true" signature="3100:3570" ph="insert into tmp_table... " />
+            <marker date="1476802007000" expanded="true" signature="3146:3336" ph="select C.pre... itr_table" />
+            <marker date="1476802007000" expanded="true" signature="3493:3547" ph="select cours... res_table" />
+            <marker date="1476802007000" expanded="true" signature="3623:3644" ph="delete from " />
+            <marker date="1476802007000" expanded="true" signature="3759:3858" ph="insert into itr_table... " />
+            <marker date="1476802007000" expanded="true" signature="3804:3858" ph="select cours... tmp_table" />
+            <marker date="1476802007000" expanded="true" signature="3911:3934" ph="select * fro... res_table" />
+            <marker date="1476802007000" expanded="true" signature="3992:4022" ph="select count... res_table" />
+            <marker date="1476802007000" expanded="true" signature="7521:7551" ph="drop table i... " />
+            <marker date="1476802007000" expanded="true" signature="7603:7633" ph="drop table i... " />
+            <marker date="1476802007000" expanded="true" signature="7685:7715" ph="drop table i... " />
+            <marker date="1476802007000" expanded="true" signature="8332:8392" ph="INSERT INTO byu_cs_course... " />
+            <marker date="1476802007000" expanded="true" signature="8512:8676" ph="create table... if" />
+            <marker date="1476802007000" expanded="true" signature="8512:8677" ph="create table... if" />
+            <marker date="1476802007000" expanded="true" signature="8710:8729" ph="DELETE FROM " />
+            <marker date="1476802007000" expanded="true" signature="8710:8735" ph="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/byu/cs452/examples/FindAllAncestorsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="18" column="24" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/byu/cs452/examples/JDBCSimpleExampleTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/org/byu/cs452/examples/FindAllPrereqTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="2" selection-start-line="8" selection-start-column="2" selection-end-line="8" selection-end-column="2" />
+          <folding>
+            <element signature="e#192#193#0" expanded="true" />
+            <element signature="e#275#276#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

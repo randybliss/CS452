@@ -1,14 +1,14 @@
-package org.byu.cs452;
+package org.byu.cs452.examples;
 
-import org.byu.cs452.examples.FindAllPrereq;
 import org.testng.annotations.Test;
 
 /**
  * @author blissrj
  */
 public class FindAllPrereqTest {
+  
   @Test(enabled = false)
-  public void testFindAllPrereqTest() {
+  public void testFindAllPrereq() {
     FindAllPrereq.findPrereqs(new String[]{"postgres", "postgres", "CS-611"});
   }
 
