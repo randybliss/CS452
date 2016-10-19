@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
  * @author blissrj
  */
 public class FindAllPrereqTest {
-  
+
   @Test(enabled = false)
   public void testFindAllPrereq() {
     FindAllPrereq.findPrereqs(new String[]{"postgres", "postgres", "CS-611"});
