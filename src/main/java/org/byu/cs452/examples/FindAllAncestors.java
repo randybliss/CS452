@@ -160,7 +160,7 @@ public class FindAllAncestors {
 
       rs = pstmtSelectCountFromResTable.executeQuery();
       if (rs.next()) {
-        System.out.println(String.format("Number of ancestors = %1$s", rs.getLong(1)));
+        System.out.println(String.format("Number of ancestors = %1$s - here is a random string %2$s", rs.getBigDecimal(1), "hi there"));
       }
     }
     catch (ClassNotFoundException | SQLException ex) {

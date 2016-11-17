@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
  * @author blissrj
  */
 public class FindAllAncestorsTest {
-  @Test(enabled = false)
+  @Test
   public void testFindAllAncestors() {
     FindAllAncestors.findAncestors(new String[]{"postgres", "postgres", "LFDN-3X3"});
   }
